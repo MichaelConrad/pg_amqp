@@ -2,7 +2,7 @@
    "name": "pg_amqp",
    "abstract": "AMQP protocol support for PostgreSQL",
    "description": "The pg_amqp package provides the ability for postgres statements to directly publish messages to an AMQP broker.",
-   "version": "0.3.0",
+   "version": "0.3.1",
    "maintainer": "Theo Schlossnagle <jesus@omnti.com>",
    "license": [ "bsd", "mozilla_1_0" ],
    "status": "stable",
@@ -10,11 +10,11 @@
      "amqp": {
        "abstract": "AMQP protocol support for PostgreSQL",
        "file": "sql/amqp.sql",
-       "version": "0.3.0"
+       "version": "0.3.1"
      }
    },
    "meta-spec": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "url": "http://pgxn.org/meta/spec.txt"
    },
    "tags": [
