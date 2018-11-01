@@ -174,7 +174,7 @@ static int wait_frame_inner(amqp_connection_state_t state,
 
       /* Incomplete or ignored frame. Keep processing input. */
       assert(result != 0);
-    }	
+    }
 
     result = read(state->sockfd,
 		  state->sock_inbound_buffer.bytes,
@@ -302,7 +302,7 @@ amqp_rpc_reply_t amqp_simple_rpc(amqp_connection_state_t state,
 	    ||
 	       ((frame.channel == 0) &&
 		(frame.payload.method.id == AMQP_CONNECTION_CLOSE_METHOD))   ) ))
-    {	     
+    {
       amqp_frame_t *frame_copy = amqp_pool_alloc(&state->decoding_pool, sizeof(amqp_frame_t));
       amqp_link_t *link = amqp_pool_alloc(&state->decoding_pool, sizeof(amqp_link_t));
 
@@ -386,7 +386,10 @@ static int amqp_login_inner(amqp_connection_state_t state,
     server_heartbeat = s->heartbeat;
   }
 
-  if (server_channel_max != 0 && server_channel_max < channel_max) {
+  // monkey patch from upstream 0.4.x: https://github.com/omniti-labs/pg_amqp/issues/23
+  // this fixes the issue in newer versions of RMQ server where the server's channel max is set to
+  // 2047: https://github.com/rabbitmq/rabbitmq-server/pull/1594
+  if (server_channel_max != 0 && (server_channel_max < channel_max || channel_max == 0)) {
     channel_max = server_channel_max;
   }
 
