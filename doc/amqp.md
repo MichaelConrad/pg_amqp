@@ -1,4 +1,4 @@
-amqp 0.3.1
+amqp 0.3.2
 ==========
 
 Synopsis
